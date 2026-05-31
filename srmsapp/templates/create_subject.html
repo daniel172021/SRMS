@@ -3,7 +3,7 @@
 {% block content %} 
 
 <div class="container">
-    <h2 class="mb-4"><i class="fas fa-plus-circle text-success"></i> Create Class</h2>
+    <h2 class="mb-4"><i class="fas fa-plus-circle text-success"></i> Create Subject</h2>
     <div class="card shadow">
         <div class="card-body">
         {% if messages %}
@@ -15,15 +15,15 @@
             {% endfor %}
         {% endif %} 
 
-            <form method="post" action="{% url 'create-class' %}">
+            <form method="post" action="{% url 'create-subject' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="classname" class="form-label">Class Name</label>
-                    <input type="text" class="form-control" id="classname" name="classname" required placeholder="Enter class name (e.g., Grade 10)">    
+                    <label for="subjectname" class="form-label">Subject Name</label>
+                    <input type="text" class="form-control" id="subjectname" name="subjectname" required placeholder="Enter subject name (e.g., Mathematics, Science, English)">    
                 </div>
                 <div class="mb-3">
-                    <label for="sectionname" class="form-label">Section</label>
-                    <input type="text" class="form-control" id="sectionname" name="sectionname" required placeholder="Enter section (e.g., Section A, B, C)">
+                    <label for="subjectcode" class="form-label">Subject Code</label>
+                    <input type="text" class="form-control" id="subjectcode" name="subjectcode" required placeholder="Enter subject code (e.g., MATH101, SCI101, ENG101)">
                 </div>
                 <button type="submit" class="btn btn-success">
                      <i class="fas fa-check-circle me-1"></i>Submit

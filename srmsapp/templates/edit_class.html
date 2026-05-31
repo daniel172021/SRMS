@@ -1,0 +1,58 @@
+{% extends 'common.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <h2 class="mb-4">
+    <i class="fas fa-edit-circle text-success"></i> Edit Class
+  </h2>
+  <div class="card shadow">
+    <div class="card-body">
+      {% if messages %} {% for message in messages %}
+      <div
+        class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show auto-dismiss"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %} {% endif %}
+
+      <form method="post" action="{% url 'edit-class' class_obj.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="class_name" class="form-label">Class Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="class_name"
+            name="class_name"
+            required
+            placeholder="Enter class name (e.g., Grade 10)"
+            value="{{ class_obj.class_name }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="section" class="form-label">Section</label>
+          <input
+            type="text"
+            class="form-control"
+            id="section"
+            name="section"
+            required
+            placeholder="Enter section (e.g., Section A, B, C)"
+            value="{{ class_obj.section }}"
+          />
+        </div>
+        <button type="submit" class="btn btn-success">
+          <i class="fas fa-check-circle me-1"></i> Update Class
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

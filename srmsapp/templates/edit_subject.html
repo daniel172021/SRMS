@@ -1,0 +1,43 @@
+{% extends 'common.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <h2 class="mb-4">
+    <i class="fas fa-edit-circle text-success"></i> Edit Subject
+  </h2>
+  <div class="card shadow">
+    <div class="card-body">
+      {% if messages %} {% for message in messages %}
+      <div
+        class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show auto-dismiss"
+        role="alert"
+      >
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %} {% endif %}
+
+      <form method="post" action="{% url 'edit-subject' subject_obj.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="subject_name" class="form-label">Subject Name</label>
+          <input type="text" class="form-control" id="subject_name" name="subject_name" required
+            placeholder="Enter subject name (e.g., Mathematics)"
+            value="{{ subject_obj.subject_name }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="subject_code" class="form-label">Subject Code</label>
+          <input type="text" class="form-control" id="subject_code" name="subject_code"
+            required placeholder="Enter subject code (e.g., MATH101)"
+            value="{{ subject_obj.subject_code }}"
+          />
+        </div>
+        <button type="submit" class="btn btn-success">
+          <i class="fas fa-check-circle me-1"></i> Update Subject
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
