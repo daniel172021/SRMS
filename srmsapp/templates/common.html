@@ -32,5 +32,24 @@
             bsAlert.close();
         });
     }, 1000); // 1000ms = 1 second
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function () {
+            let searchValue = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#studentTable tbody tr');
+
+            rows.forEach(function (row) {
+                let rowText = row.textContent.toLowerCase();
+
+                row.style.display = rowText.includes(searchValue)
+                    ? ''
+                    : 'none';
+            });
+        });
+    }
+});
 </script>
 </html>
